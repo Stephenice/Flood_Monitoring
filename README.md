@@ -1,6 +1,6 @@
 # Project - Flood Monitoring App
 
-The project delivers a user-friendly tool, enabling users to access flood measurement data from various monitoring stations, visualize trends through line graphs, and explore detailed readings.
+The project enabling users to access flood measurement data from various monitoring stations, visualize trends through line graphs, and explore detailed readings.
 The project involves leveraging the Real-Time flood-monitoring API provided by the Environmental Agency to create a functional web application capable of displaying flood measurement data that:
 
 - Provides some control to select an individual measurement station.
@@ -25,7 +25,7 @@ The project involves leveraging the Real-Time flood-monitoring API provided by t
 
 ## Installation
 
-The easiest way to view this project demo [click here].
+#### The easiest way to view this project demo [click here].
 
 #### 1. Clone the repo
 
