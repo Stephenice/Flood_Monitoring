@@ -10,26 +10,10 @@ const lineChart = document.getElementById("line-chart");
 const readingsTable = document.getElementById("readings-table");
 const statisticsSection = document.getElementById("statistics-section");
 const contentHeadline = document.querySelector(".content_headline");
-
 const mainContainer = document.querySelector(".main_container");
 const search_box = document.querySelector(".search_box");
 
-// Spinner
-function showSpinner(elementSelected) {
-  const markup = `<div class="spinner" id="spinner"></div> `;
-  elementSelected.insertAdjacentHTML("afterend", markup);
-  elementSelected.style.display = "none";
-}
-
-function hideSpinner(elementSelected) {
-  const spinnerElement = document.getElementById("spinner");
-  if (spinnerElement) {
-    spinnerElement.remove();
-  }
-  elementSelected.style.display = "flex";
-}
-
-// fetch stations and populate select options
+// initialize fetch stations and populate select options
 async function fetchAndPopulateStations() {
   try {
     showSpinner(search_box);
@@ -52,6 +36,21 @@ async function fetchAndPopulateStations() {
 }
 
 fetchAndPopulateStations();
+
+// Spinner
+function showSpinner(elementSelected) {
+  const markup = `<div class="spinner" id="spinner"></div> `;
+  elementSelected.insertAdjacentHTML("afterend", markup);
+  elementSelected.style.display = "none";
+}
+
+function hideSpinner(elementSelected) {
+  const spinnerElement = document.getElementById("spinner");
+  if (spinnerElement) {
+    spinnerElement.remove();
+  }
+  elementSelected.style.display = "flex";
+}
 
 // fetch data for selected station
 async function fetchSelectedStationData() {
