@@ -15,7 +15,7 @@ const tableWrapper = document.querySelector(".table_wrapper");
 const search_box = document.querySelector(".search_box");
 const spinner = document.getElementById("spinner");
 
-// show or hide spinner
+// Spinner
 function toggleSpinner(show, elementSelected) {
   spinner.style.display = show ? "block" : "none";
   elementSelected.style.display = show ? "none" : "flex";
@@ -49,8 +49,7 @@ async function fetchSelectedStationData() {
   try {
     const selectedStation = stationSelect.value;
     if (selectedStation === "0") return;
-    // console.log("alphabet2", selectedStation);
-    // const now = new Date().toISOString().split("T")[0];
+
     const last24Hours = new Date(
       Date.now() - 24 * 60 * 60 * 1000
     ).toISOString();
@@ -58,7 +57,6 @@ async function fetchSelectedStationData() {
     const data = await getJSON(
       `${API_URL}/${selectedStation}/readings?_sorted&since=${last24Hours}`
     );
-    // const response = await fetchData(url);
 
     return data.items;
   } catch (error) {
