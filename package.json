@@ -1,0 +1,19 @@
+{
+  "name": "flood_monitoring",
+  "version": "1.0.0",
+  "description": "flood monitoring app",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Stephen Ijeh",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.10.3"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.0",
+    "core-js": "^3.33.3",
+    "regenerator-runtime": "^0.14.0"
+  }
+}
