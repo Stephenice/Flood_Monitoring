@@ -13,27 +13,26 @@ const contentHeadline = document.querySelector(".content_headline");
 
 const mainContainer = document.querySelector(".main_container");
 const search_box = document.querySelector(".search_box");
-// const spinner = document.getElementById("spinner");
 
 // Spinner
-function showSpinner(show, elementSelected) {
+function showSpinner(elementSelected) {
   const markup = `<div class="spinner" id="spinner"></div> `;
   elementSelected.insertAdjacentHTML("afterend", markup);
-  elementSelected.style.display = show ? "none" : "flex";
+  elementSelected.style.display = "none";
 }
 
-function hideSpinner(show, elementSelected) {
+function hideSpinner(elementSelected) {
   const spinnerElement = document.getElementById("spinner");
   if (spinnerElement) {
     spinnerElement.remove();
   }
-  elementSelected.style.display = show ? "none" : "flex";
+  elementSelected.style.display = "flex";
 }
 
 // fetch stations and populate select options
 async function fetchAndPopulateStations() {
   try {
-    showSpinner(true, search_box);
+    showSpinner(search_box);
 
     const data = await getJSON(`${API_URL}?_view=full`);
     console.log("alphabet", data.items);
@@ -45,9 +44,9 @@ async function fetchAndPopulateStations() {
       stationSelect.appendChild(option);
     });
 
-    hideSpinner(false, search_box);
+    hideSpinner(search_box);
   } catch (error) {
-    hideSpinner(false, search_box);
+    hideSpinner(search_box);
     throw error;
   }
 }
@@ -77,19 +76,20 @@ async function fetchSelectedStationData() {
 // Event listener for show data button click
 showDataBtn.addEventListener("click", async () => {
   try {
-    showSpinner(true, mainContainer);
+    showSpinner(mainContainer);
     const data = await fetchSelectedStationData();
     console.log("alphabet3", data);
 
     if (!data || data.length === 0) {
       clearDisplay();
-      hideSpinner(false, mainContainer);
+      hideSpinner(mainContainer);
       return;
     }
 
     renderData(data);
-    hideSpinner(false, mainContainer);
+    hideSpinner(mainContainer);
   } catch (error) {
+    hideSpinner(mainContainer);
     throw error;
   }
 });
