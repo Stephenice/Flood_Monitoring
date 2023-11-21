@@ -1,6 +1,7 @@
-# Task - Flood Monitoring App
+# Project - Flood Monitoring App
 
-The task involves leveraging the Real-Time flood-monitoring API provided by the Environmental Agency to create a functional web application capable of displaying flood measurement data that:
+The project delivers a user-friendly tool, enabling users to access flood measurement data from various monitoring stations, visualize trends through line graphs, and explore detailed readings.
+The project involves leveraging the Real-Time flood-monitoring API provided by the Environmental Agency to create a functional web application capable of displaying flood measurement data that:
 
 - Provides some control to select an individual measurement station.
 
