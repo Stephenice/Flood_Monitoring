@@ -71,8 +71,13 @@ showDataBtn.addEventListener("click", async () => {
     const data = await fetchSelectedStationData();
     console.log("alphabet3", data);
 
-    if (!data) return;
+    if (!data || data.length === 0) {
+      clearDisplay();
+      toggleSpinner(false, tableWrapper);
+      return;
+    }
 
+    console.log("alphabet4", data);
     if (window.myChart) window.myChart.destroy();
 
     const timestamps = [];
@@ -98,9 +103,17 @@ showDataBtn.addEventListener("click", async () => {
     toggleSpinner(false, tableWrapper);
   } catch (error) {
     throw error;
-    // console.error("Error fetching station data:", error);
   }
 });
+
+function clearDisplay() {
+  if (window.myChart) {
+    window.myChart.destroy();
+  }
+  contentHeadline.textContent = `Station ID ${stationSelect.value} has no data reading!`;
+  readingsTable.textContent = "";
+  statisticsSection.textContent = "";
+}
 
 function lineChartDisplay(timestamps, values) {
   // Create line chart
