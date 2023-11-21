@@ -55,3 +55,19 @@ npm start
 ```bash
 npm run build
 ```
+
+## Usage
+
+1. Run the application using your preferred method.
+
+2. Access the application through your web browser.
+
+3. Select a measurement station from the provided controls.
+
+4. View the line graph showcasing flood readings over the last 24 hours.
+
+5. Explore the accompanying table displaying detailed flood measurement data corresponding to the selected station and timeframe.
+
+## Acknowledgments
+
+[Environmental Agency for providing the Flood Monitoring API](https://environment.data.gov.uk/flood-monitoring/doc/reference)
