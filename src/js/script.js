@@ -77,29 +77,7 @@ showDataBtn.addEventListener("click", async () => {
       return;
     }
 
-    console.log("alphabet4", data);
-    if (window.myChart) window.myChart.destroy();
-
-    const timestamps = [];
-    const values = [];
-
-    data.forEach((item) => {
-      timestamps.push(new Date(item.dateTime).toLocaleString());
-      values.push(item.value);
-    });
-
-    // Display chart
-    lineChartDisplay(timestamps, values);
-
-    // Display headline
-    contentHeadline.textContent = `Readings for the Last 24 Hours`;
-
-    // Display table of readings
-    readingTableDisplay(timestamps, values);
-
-    // Calculate statistics
-    statisticsCalculationDisplay(values);
-
+    renderData(data);
     toggleSpinner(false, tableWrapper);
   } catch (error) {
     throw error;
@@ -107,12 +85,42 @@ showDataBtn.addEventListener("click", async () => {
 });
 
 function clearDisplay() {
-  if (window.myChart) {
-    window.myChart.destroy();
-  }
+  if (window.myChart) window.myChart.destroy();
   contentHeadline.textContent = `Station ID ${stationSelect.value} has no data reading!`;
   readingsTable.textContent = "";
   statisticsSection.textContent = "";
+}
+
+function renderData(data) {
+  if (window.myChart) {
+    window.myChart.destroy();
+  }
+
+  const { timestamps, values } = extractDataFromResponse(data);
+
+  // Display chart
+  lineChartDisplay(timestamps, values);
+
+  // Display headline
+  contentHeadline.textContent = `Readings for the Last 24 Hours`;
+
+  // Display table of readings
+  readingTableDisplay(timestamps, values);
+
+  // Calculate statistics
+  statisticsCalculationDisplay(values);
+}
+
+function extractDataFromResponse(data) {
+  const timestamps = [];
+  const values = [];
+
+  data.forEach((item) => {
+    timestamps.push(new Date(item.dateTime).toLocaleString());
+    values.push(item.value);
+  });
+
+  return { timestamps, values };
 }
 
 function lineChartDisplay(timestamps, values) {

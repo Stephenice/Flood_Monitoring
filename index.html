@@ -38,16 +38,16 @@
             
             <div id="chart-container">
 
-                <div class="chart_section">
+                <section class="chart_section">
                     <div class="content_headline"> </div>
-                    <div class="chart">
-                        <canvas id="line-chart"></canvas>
-                    </div>
-                </div>
+                    <figure class="chart" aria-labelledby="chart-heading">
+                        <canvas id="line-chart" aria-label="Line Chart Description"></canvas>
+                    </figure>
+                </section>
                 
                 <div class="spinner" id="spinner"></div> 
 
-                <div class="table_wrapper">
+                <section class="table_wrapper" aria-labelledby="table-heading">
 
                     <div class="table_section">
                         <div id="readings-table"></div>
@@ -56,7 +56,7 @@
                     <!-- Statistics section -->
                     <div id="statistics-section"> 
                     </div>
-                </div>
+                </section>
         
             </div>
         </main>
