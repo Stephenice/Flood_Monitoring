@@ -143,7 +143,6 @@ color: var(--color-brand-green);
   max-width: 100vw;
   margin-bottom: 20px;
   text-align: center;
-  /* flex-direction: column; */
   justify-content: center;
 }
 

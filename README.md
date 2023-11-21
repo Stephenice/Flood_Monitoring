@@ -25,7 +25,7 @@ The project involves leveraging the Real-Time flood-monitoring API provided by t
 
 ## Installation
 
-#### The easiest way to view this project demo [click here].
+#### The easiest way to view this project demo [click here](https://floodmonitor.netlify.app/).
 
 #### 1. Clone the repo
 
