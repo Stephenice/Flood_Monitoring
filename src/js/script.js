@@ -11,20 +11,29 @@ const readingsTable = document.getElementById("readings-table");
 const statisticsSection = document.getElementById("statistics-section");
 const contentHeadline = document.querySelector(".content_headline");
 
-const tableWrapper = document.querySelector(".table_wrapper");
+const mainContainer = document.querySelector(".main_container");
 const search_box = document.querySelector(".search_box");
-const spinner = document.getElementById("spinner");
+// const spinner = document.getElementById("spinner");
 
 // Spinner
-function toggleSpinner(show, elementSelected) {
-  spinner.style.display = show ? "block" : "none";
+function showSpinner(show, elementSelected) {
+  const markup = `<div class="spinner" id="spinner"></div> `;
+  elementSelected.insertAdjacentHTML("afterend", markup);
+  elementSelected.style.display = show ? "none" : "flex";
+}
+
+function hideSpinner(show, elementSelected) {
+  const spinnerElement = document.getElementById("spinner");
+  if (spinnerElement) {
+    spinnerElement.remove();
+  }
   elementSelected.style.display = show ? "none" : "flex";
 }
 
 // fetch stations and populate select options
 async function fetchAndPopulateStations() {
   try {
-    toggleSpinner(true, search_box);
+    showSpinner(true, search_box);
 
     const data = await getJSON(`${API_URL}?_view=full`);
     console.log("alphabet", data.items);
@@ -36,8 +45,9 @@ async function fetchAndPopulateStations() {
       stationSelect.appendChild(option);
     });
 
-    toggleSpinner(false, search_box);
+    hideSpinner(false, search_box);
   } catch (error) {
+    hideSpinner(false, search_box);
     throw error;
   }
 }
@@ -67,18 +77,18 @@ async function fetchSelectedStationData() {
 // Event listener for show data button click
 showDataBtn.addEventListener("click", async () => {
   try {
-    toggleSpinner(true, tableWrapper);
+    showSpinner(true, mainContainer);
     const data = await fetchSelectedStationData();
     console.log("alphabet3", data);
 
     if (!data || data.length === 0) {
       clearDisplay();
-      toggleSpinner(false, tableWrapper);
+      hideSpinner(false, mainContainer);
       return;
     }
 
     renderData(data);
-    toggleSpinner(false, tableWrapper);
+    hideSpinner(false, mainContainer);
   } catch (error) {
     throw error;
   }
@@ -92,9 +102,7 @@ function clearDisplay() {
 }
 
 function renderData(data) {
-  if (window.myChart) {
-    window.myChart.destroy();
-  }
+  if (window.myChart) window.myChart.destroy();
 
   const { timestamps, values } = extractDataFromResponse(data);
 
