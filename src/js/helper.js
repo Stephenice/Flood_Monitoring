@@ -10,13 +10,6 @@ const timeout = function (s) {
 
 export const getJSON = async function (url) {
   try {
-    const requestOptions = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8", // Setting charset to utf-8
-      },
-    };
-
     const fetchPro = fetch(url);
     const res = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]);
     const data = await res.json();

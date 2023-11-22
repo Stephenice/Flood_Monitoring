@@ -19,7 +19,6 @@ async function fetchAndPopulateStations() {
     showSpinner(search_box);
 
     const data = await getJSON(`${API_URL}?_view=full`);
-    console.log("alphabet", data.items);
 
     data.items.map((station) => {
       const option = document.createElement("option");
